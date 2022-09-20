@@ -25,6 +25,12 @@ function runGame(gameType) {
 
     if (gameType === "addition") {
         displayAdditionQuestion(num1, num2);
+    } else if (gameType === "subtraction") {
+        displaySubtractionQuestion(num1, num2);
+
+    } else if (gameType === "multiply") {
+        displayMultiplynQuestion(num1, num2);
+
     } else {
         alert(`Unknown game type ${gameType}`);
         throw `Unknown game type ${gameType}. Abortin!`;
@@ -64,9 +70,13 @@ function calculateCorrectAnswer() {
 
     if (operator === "+") {
 
-        return [operand1 + operand2, "addition"];
+        return [operand1 + operand2, "addition"]; // return an array.
 
 
+    } else if (operator === "-") {
+        return [operand1 - operand2, "subtract"];
+    } else if (operator === "*") {
+        return [operand1 * operand2, "multiply"];
     } else {
 
         alert(`Unimplemented operator ${operator}`);
@@ -93,14 +103,22 @@ function displayAdditionQuestion(operand1, operand2) {
     document.getElementById(`operator`).textContent = "+";
 }
 
-function displaySubtractionQuestion() {
+function displaySubtractionQuestion(operand1, operand2) {
+    document.getElementById(`operand1`).textContent = operand1 > operand2 ? operand1 : operand2;
+    document.getElementById(`operand2`).textContent = operand2 > operand2 ? operand1 : operand2;
+    document.getElementById(`operator`).textContent = "-";
 
 }
 
-function displayMultiplynQuestion() {
-
+function displayMultiplynQuestion(operand1, operand2) {
+    //which is bigger operand  or operand  ? if operand  return that, if operand, return that instead
+    document.getElementById(`operand1`).textContent = operand1;
+    document.getElementById(`operand2`).textContent = operand2;
+    document.getElementById(`operator`).textContent = "x";
 }
 
-function displayDivisionQuestion() {
-
+function displayDivisionQuestion(operand1, operand2) {
+    document.getElementById(`operand1`).textContent = operand1;
+    document.getElementById(`operand2`).textContent = operand2;
+    document.getElementById(`operator`).textContent = "/";
 }
