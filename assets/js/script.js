@@ -31,10 +31,26 @@ function runGame(gameType) {
 
     }
 }
-
+/**
+ * Checks the answer against the first element in the 
+ * returned calculateCorrectAnswer array
+ */
 
 function checkAnswer() {
+    let userAnswer = parseInt(document.getElementById("answer-box").value);
+    let calculateAnswer = calculateCorrectAnswer();
+    let isCorrect = userAnswer === calculateAnswer[0];
 
+    if (isCorrect) {
+        alert("Hey! you got it right! :D");
+        incrementScore();
+    } else {
+
+        alert(`Awww.... you answered ${userAnswer}. The correct answer was ${calculateAnswer [0]}!`);
+        incrementWrongAnswer();
+    }
+
+    runGame(calculateAnswer[1]);
 }
 /** 
  * Gets the operands(numbers) and the operator directly
@@ -47,21 +63,27 @@ function calculateCorrectAnswer() {
     let operator = document.getElementById("operator").innerText; // tp get text content of those eleemnts
 
     if (operator === "+") {
+
         return [operand1 + operand2, "addition"];
 
 
     } else {
+
         alert(`Unimplemented operator ${operator}`);
         throw `Unimplemented operator ${operator}.Aborting!`;
     }
 }
-
+/**
+ * Gets the current score from the dom and increment it by 1
+ */
 function incrementScore() {
-
+    let oldScore = parseInt(document.getElementById("score").innerText);
+    document.getElementById("score").innerText = ++oldScore;
 }
 
 function incrementWrongAnswer() {
-
+    let oldScore = parseInt(document.getElementById("incorrect").innerText);
+    document.getElementById("incorrect").innerText = ++oldScore;
 }
 
 function displayAdditionQuestion(operand1, operand2) {
